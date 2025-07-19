@@ -9,7 +9,7 @@
     "lint": "eslint . --fix",
     "encrypt": "cross-env PASSWORD=myPassword ENV=.env.development tsx scripts/env-encryptor.ts encrypt",
     "decrypt": "cross-env PASSWORD=myPassword ENV=.env.development.enc tsx scripts/env-encryptor.ts decrypt",
-    "dev": "nodemon src/bin/www.ts",
+    "dev": "npm run check-node && npm run check-env && cross-env NODE_ENV=development nodemon",
     "test": "cross-env NODE_ENV=test nodemon",
     "build": "tsc",
     "postbuild": "tsx scripts/copy-files.ts",
@@ -35,8 +35,9 @@
     "http-errors": "~2.0.0",
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.16.4",
     "morgan": "~1.10.0",
-    "nano": "^10.1.4",
+    
     "nodemailer": "^7.0.2",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
@@ -53,7 +54,7 @@
     "@types/express-session": "^1.18.1",
     "@types/jsonwebtoken": "^9.0.9",
     "@types/morgan": "^1.9.9",
-    "@types/node": "^22.14.0",
+    
     "@types/passport": "^1.0.17",
     "@types/passport-local": "^1.0.38",
     "@types/semver": "^7.7.0",
