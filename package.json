@@ -1,0 +1,32 @@
+{
+  "name": "kebab_back",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check-node": "tsx scripts/check-node-version.ts",
+    "check-env": "tsx scripts/checkEnv.ts",
+    "lint": "eslint . --fix",
+    "encrypt": "cross-env PASSWORD=myPassword ENV=.env.development tsx scripts/env-encryptor.ts encrypt",
+    "decrypt": "cross-env PASSWORD=myPassword ENV=.env.development.enc tsx scripts/env-encryptor.ts decrypt",
+    "dev": "npm run check-node && npm run check-env && cross-env NODE_ENV=development nodemon",
+    "test": "cross-env NODE_ENV=test nodemon",
+    "build": "tsc",
+    "postbuild": "tsx scripts/copy-files.ts",
+    "serve": "cross-env NODE_ENV=production node dist/bin/www.js"
+  },
+  "keywords": [],
+  "author": "KeyError34",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.0.4",
+    "semver": "^7.7.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  }
+}
