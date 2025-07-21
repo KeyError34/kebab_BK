@@ -12,10 +12,10 @@ const orderSchema = new Schema<IOrder>(
     ],
     totalPrice: { type: Number, required: true },
     deliveryAddress: {
-      street: { type: String, required: true },
-      city: { type: String, required: true },
-      postalCode: { type: String, required: true },
-      country: { type: String, required: true },
+      street: { type: String, required: true , default:''},
+      city: { type: String, required: true, default:'' },
+      postalCode: { type: String, required: true, default:'' },
+      country: { type: String, required: true , default:''},
     },
     status: {
       type: String,

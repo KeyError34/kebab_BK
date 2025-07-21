@@ -8,7 +8,7 @@ export interface IOrder extends Document {
     quantity: number;
   }[];
   totalPrice: number;
-  deliveryAddress: {
+  deliveryAddress?: {
     street: string;
     city: string;
     postalCode: string;

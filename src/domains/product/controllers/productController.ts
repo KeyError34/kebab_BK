@@ -1,82 +1,38 @@
-// import { Request, Response } from 'express';
-// import { UserService } from '../services/userServise.js';
+import { Request, Response } from 'express';
+import { ProductService } from '../services/productServise.js';
 
-// export class UserController {
-//   private userService: UserService;
+export class ProductController {
+  private productService: ProductService;
 
-//   constructor() {
-//     this.userService = new UserService();
-//   }
+  constructor() {
+    this.productService = new ProductService();
+  }
 
-//   createUser = async (req: Request, res: Response): Promise<void> => {
-//     const { name, email, password, fullName } = req.body;
-//     try {
-//       const user = await this.userService.createUser(name, email, password, fullName);
-//       res.status(201).json(user);
-//     } catch (error) {
-//       console.error('Error creating user:', error);
-//       res.status(500).json({ error: 'Failed to create user' });
-//     }
-//   };
+  getAll = async (req: Request, res: Response) => {
+    const products = await this.productService.getAllProducts();
+    res.json(products);
+  };
 
-//   findUserById = async (req: Request, res: Response): Promise<void> => {
-//     const { id } = req.params;
-//     try {
-//       const user = await this.userService.findUserById(id);
-//       if (!user) {
-//         res.status(404).json({ message: 'User not found' });
-//         return;
-//       }
-//       res.status(200).json(user);
-//     } catch (error) {
-//       console.error('Error finding user by ID:', error);
-//       res.status(500).json({ error: 'Failed to fetch user' });
-//     }
-//   };
+  getOne = async (req: Request, res: Response) => {
+    const product = await this.productService.getProductById(req.params.id);
+    if (!product) return res.status(404).json({ message: 'Product not found' });
+    res.json(product);
+  };
 
-//   updateUserDetails = async (req: Request, res: Response): Promise<void> => {
-//     const { id } = req.params;
-//     const { name, email, fullName, password } = req.body;
-//     try {
-//       const updatedUser = await this.userService.updateUserDetails(id, {
-//         name,
-//         email,
-//         fullName,
-//         password,
-//       });
-//       if (!updatedUser) {
-//         res.status(404).json({ message: 'User not found' });
-//         return;
-//       }
-//       res.status(200).json({ message: 'User details updated successfully', updatedUser });
-//     } catch (error) {
-//       console.error('Error updating user details:', error);
-//       res.status(500).json({ error: 'Failed to update user' });
-//     }
-//   };
+  create = async (req: Request, res: Response) => {
+    const product = await this.productService.createProduct(req.body);
+    res.status(201).json(product);
+  };
 
-//   deleteUser = async (req: Request, res: Response): Promise<void> => {
-//     const { id } = req.params;
-//     try {
-//       const deletedUser = await this.userService.deleteUser(id);
-//       if (!deletedUser) {
-//         res.status(404).json({ message:` User with id ${id} not found` });
-//         return;
-//       }
-//       res.status(200).json({ message: 'User is deleted', deletedUser });
-//     } catch (error) {
-//       console.error('Error deleting user:', error);
-//       res.status(500).json({ error: 'Failed to delete user' });
-//     }
-//   };
+  update = async (req: Request, res: Response) => {
+    const product = await this.productService.updateProduct(req.params.id, req.body);
+    if (!product) return res.status(404).json({ message: 'Product not found' });
+    res.json(product);
+  };
 
-//   getAllUsers = async(req: Request, res: Response): Promise<void> => {
-//     try {
-//       const users = await this.userService.getAllUsers();
-//       res.status(200).json(users);
-//     } catch (error) {
-//       console.error('Error fetching users:', error);
-//       res.status(500).json({ error: 'Failed to fetch users' });
-//     }
-//   };
-// }
+  delete = async (req: Request, res: Response) => {
+    const product = await this.productService.deleteProduct(req.params.id);
+    if (!product) return res.status(404).json({ message: 'Product not found' });
+    res.json({ message: 'Product deleted' });
+  };
+}

@@ -1,52 +1,23 @@
-// import  connectDB  from "../../../core/config/db.js";
-// import { User } from '../models/User.js';
+import Product from "../schemas/productSchema.js";
+import { IProduct } from "../models/Product.js";
+export class ProductRepository {
+  async findAll(): Promise<IProduct[]> {
+    return Product.find();
+  }
 
-// export class UserRepository {
-//   private db = connectDB();
-//   async checkFieldUniqueness(field: string, value: string, excludeId: string): Promise<boolean> {
-//     const resalt = await this.db.find({
-//       selector: {
-//         type: 'user',
-//         [field]: value,
-//         _id: { $ne: excludeId },
-//       },
-//       limit: 1,
-//     });
-//     return resalt.docs.length > 0;
-//   }
-//   async findUserByID(id: string): Promise<User | null> {
-//     const resalt = await this.db.find({
-//       selector: {
-//         type: 'user',
-//         _id: id,
-//       },
-//       limit: 1,
-//       fields: ['_id', '_rev', 'type', 'name', 'email', 'role', 'createdAt', 'updatedAt'],
-//     });
-//     return (resalt.docs[0] as User) || null;
-//   }
-//   async findByLogin(login: string): Promise<User | null> {
-//     const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(login);
-//     const selectorField = isEmail ? 'email' : 'name';
-//     const result = await this.db.find({
-//       selector: { type: 'user', [selectorField]: { $eq: login } },
-//       limit: 1,
-//     });
-//     return (result.docs[0] as User) || null;
-//   }
-//   async insert(user: User): Promise<void> {
-//     await this.db.insert(user);
-//   }
+  async findById(id: string): Promise<IProduct | null> {
+    return Product.findById(id);
+  }
 
-//   async delete(_id: string, _rev: string): Promise<void> {
-//     await this.db.destroy(_id, _rev);
-//   }
+  async create(data: Partial<IProduct>): Promise<IProduct> {
+    return Product.create(data);
+  }
 
-//   async getAllUsers(): Promise<User[]> {
-//     const result = await this.db.find({
-//       selector: { type: 'user' },
-//       fields: ['_id', 'name', 'email', 'role', 'fullName', 'createdAt', 'updatedAt'],
-//     });
-//     return result.docs as User[];
-//   }
-// }
+  async update(id: string, data: Partial<IProduct>): Promise<IProduct | null> {
+    return Product.findByIdAndUpdate(id, data, { new: true });
+  }
+
+  async delete(id: string): Promise<IProduct | null> {
+    return Product.findByIdAndDelete(id);
+  }
+}

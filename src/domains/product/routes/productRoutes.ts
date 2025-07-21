@@ -1,15 +1,15 @@
-// import { Router } from 'express';
-// import { UserController } from '../controllers/userController.js';
-// import { authenticateJWT } from '../../../core/config/middlewares/authMiddleware.js';
-// import { checkSelfOrAdmin } from '../../../core/config/middlewares/checkAdminRole.js';
+import { Router } from 'express';
+import { ProductController } from '../controllers/productController.js';
+import { authenticateJWT } from '../../../core/middlewares/authMiddleware.js';
+import { checkAdminRole } from '../../../core/middlewares/checkAdminRole.js';
 
-// const router = Router();
-// const userController = new UserController();
+const router = Router();
+const controller = new ProductController();
 
-// router.get('/v1/getall', authenticateJWT, userController.getAllUsers);
-// router.post('/v1/create', userController.createUser);
-// router.put('/v1/update/:id', authenticateJWT, checkSelfOrAdmin, userController.updateUserDetails);
-// router.get('/v1/:id', authenticateJWT, userController.findUserById);
-// router.delete('/v1/:id', authenticateJWT, userController.deleteUser);
+router.get('/all', controller.getAll);
+router.get('/:id', controller.getOne);
+router.post('/v1/create',authenticateJWT, checkAdminRole, controller.create);
+router.put('v1/update/:id',authenticateJWT, checkAdminRole, controller.update);
+router.delete('v1/del/:id',authenticateJWT, checkAdminRole, controller.delete);
 
-// export default router;
+export default router;
