@@ -6,7 +6,7 @@ const productSchema = new Schema<IProduct>(
     title: { type: String, required: true },
     description: String,
     price: { type: Number, required: true },
-    image: String,
+    image:{ type: String },
     category: { type: String, enum: ['main', 'drink', 'dessert'], required: true },
     isAvailable: { type: Boolean, default: true },
   },

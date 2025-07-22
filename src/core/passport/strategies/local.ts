@@ -1,7 +1,7 @@
 import { Strategy as LocalStrategy } from 'passport-local';
 import passport from 'passport';
 import { comparePassword } from '../../../core/utils/hash.js';
-import { UserService } from '../../user/services/userServise.js';
+import { UserService } from '../../../domains/user/services/userServise.js';
 const userService = new UserService();
 
 passport.use(

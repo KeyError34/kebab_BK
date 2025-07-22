@@ -12,9 +12,9 @@ export const checkAdminRole = (req: Request, res: Response, next: NextFunction):
 };
 export const checkSelfOrAdmin = (req: Request, res: Response, next: NextFunction): void => {
   const user = req.user as IUser;
-  console.log(user);
+  // console.log(user);
   const { id } = req.params;
-  console.log(id);
+  // console.log(id);
   if (user?.role === 'administrator' || user?._id.toString() === id) {
     return next();
   }

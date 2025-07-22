@@ -1,7 +1,7 @@
 import passport from 'passport';
 import { Strategy as JwtStrategy, ExtractJwt, StrategyOptions } from 'passport-jwt';
-import { UserRepository } from '../../user/reposetories/userRepository.js';
-import { IUser } from '../../user/models/User.js'; 
+import { UserRepository } from '../../../domains/user/reposetories/userRepository.js';
+import { IUser } from '../../../domains/user/models/User.js';
 import { IJwtPayload } from '../../../core/types/jwt.js';
 const SECRET = process.env.JWT_SECRET || 'your_jwt_secret_key';
 
