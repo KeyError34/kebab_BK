@@ -8,6 +8,7 @@ import { fileURLToPath } from 'url';
 import connectDB from './core/config/db.js';
 import Router from './Router.js'
 import passport from './core/passport/passport.js'
+import { User } from './core/models/user.js';
 const app: express.Application = express();
 
 const __filename = fileURLToPath(import.meta.url);
