@@ -12,11 +12,7 @@ const userSchema = new Schema<IUser>(
       enum: ['administrator', 'user'],
       default: 'user',
     },
-    profile: {
-      type: Schema.Types.ObjectId,
-      refPath: 'profileModel',
-      required: true,
-    },
+    
   },
   { timestamps: true }
 );

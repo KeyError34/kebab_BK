@@ -3,8 +3,13 @@ import { IUser } from '../models/User.js';
 import { Types } from 'mongoose';
 
 export class UserRepository {
-  async checkFieldUniqueness(field: keyof IUser, value: string, excludeId: string): Promise<boolean> {
-    const query: any = { [field]: value, _id: { $ne: new Types.ObjectId(excludeId) } };
+   async checkFieldUniqueness(field: keyof IUser, value: string, excludeId?: string): Promise<boolean> {
+    const query: any = { [field]: value };
+
+    if (excludeId && Types.ObjectId.isValid(excludeId)) {
+      query._id = { $ne: new Types.ObjectId(excludeId) };
+    }
+
     const user = await User.findOne(query).lean();
     return !!user;
   }

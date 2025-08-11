@@ -7,7 +7,6 @@ export interface IUser extends Document {
   passwordHash: string;
   role: UserRole;
   fullName: string;
-  profile: Types.ObjectId; 
   createdAt: Date;
   updatedAt: Date;
 }

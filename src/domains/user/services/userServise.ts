@@ -1,5 +1,5 @@
-import { hashPassword } from "../../../core/utils/hash.js";
-import { UserRepository } from "../reposetories/userRepository.js";
+import { hashPassword } from '../../../core/utils/hash.js';
+import { UserRepository } from '../reposetories/userRepository.js';
 import { IUser } from '../models/User.js';
 import mongoose from 'mongoose';
 
@@ -9,14 +9,15 @@ export class UserService {
   constructor() {
     this.userRepo = new UserRepository();
   }
-
-  async createUser(userName: string, email: string, password: string, fullName: string, profile: mongoose.Types.ObjectId) {
+  async createUser(userName: string, email: string, password: string, fullName: string) {
     if (await this.userRepo.checkFieldUniqueness('userName', userName, '')) {
       throw new Error('Username already taken');
     }
+
     if (await this.userRepo.checkFieldUniqueness('email', email, '')) {
       throw new Error('Email already registered');
     }
+
     if (!password || password.length < 8) {
       throw new Error('Password must be at least 8 characters long');
     }
@@ -28,13 +29,13 @@ export class UserService {
       email,
       fullName,
       passwordHash,
-      role: 'user',
-      profile,
+      role: 'administrator',
     };
 
     const createdUser = await this.userRepo.insert(userData as IUser);
 
     const { _id, userName: uName, fullName: fName, role, createdAt, updatedAt } = createdUser;
+
     return { _id, userName: uName, fullName: fName, role, createdAt, updatedAt };
   }
 

@@ -54,7 +54,7 @@ Body → raw JSON:
   "email": "new@example.com",
   "password": "password123",
   "fullName": "New User",
-  "profile": "66b7f5a0e7..." 
+  "profile": null
 }
 
 (поле profile — это ObjectId профиля, если оно используется, можно передавать null)

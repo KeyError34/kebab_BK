@@ -9,9 +9,9 @@ export class UserController {
   }
 
   createUser = async (req: Request, res: Response): Promise<void> => {
-    const { userName, email, password, fullName, profile } = req.body;
+    const { userName, email, password, fullName } = req.body;
     try {
-      const user = await this.userService.createUser(userName, email, password, fullName, profile);
+      const user = await this.userService.createUser(userName, email, password, fullName);
       res.status(201).json(user);
     } catch (error: any) {
       console.error('Create error:', error.message);
