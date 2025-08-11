@@ -111,12 +111,12 @@ Body → raw JSON:
 4. Получить пользователя по ID
 
 Метод: GET
-URL: /v2/:id
+URL: user/v2/:id
 Авторизация: JWT + роль admin
 
 Пример:
 
-GET http://localhost:3000/users/v2/66b7f8a7e4...
+GET http://localhost:3000/user/v2/66b7f8a7e4...
 
 Ответ (200 OK):
 
@@ -141,7 +141,7 @@ URL: /v2/:id
 
 Пример:
 
-DELETE http://localhost:3000/users/v2/66b7f8a7e4...
+DELETE http://localhost:3000/user/v2/66b7f8a7e4...
 
 Ответ (200 OK):
 

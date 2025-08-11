@@ -55,7 +55,7 @@ GET http://localhost:3000/products/66b6d5d4f0a2...
 3. Создать товар
 
 Метод: POST
-URL: /v1/create
+URL: prodact/v1/create
 Авторизация: JWT + роль admin
 Тип запроса: form-data (если загружается изображение) или raw JSON (если без файла)
 

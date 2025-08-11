@@ -15,7 +15,7 @@ POST /reset-password
 
 Method: POST
 
-URL: http://localhost:3000/login
+URL: http://localhost:3000/v2/login
 
 Body → raw → JSON:
 
@@ -30,10 +30,10 @@ login (userName / email)
 2. POST /request-reset
 
 Запрос на сброс пароля — письмо с токеном.
-
+Valid 5 min
 Method: POST
 
-URL: http://localhost:3000/request-reset
+URL: http://localhost:3000/v2/request-reset
 
 Body:
 
@@ -51,7 +51,7 @@ Body:
 
 Method: POST
 
-URL: http://localhost:3000/reset-password
+URL: http://localhost:3000/v2/reset-password
 
 Body:
 
