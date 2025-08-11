@@ -13,7 +13,7 @@ http://localhost:3000/users
 1. Получить всех пользователей
 
 Метод: GET
-URL: /v1/getall
+URL: user/v1/getall
 Авторизация: JWT + роль admin
 
 Headers:
@@ -44,7 +44,7 @@ GET http://localhost:3000/users/v1/getall
 2. Создать пользователя
 
 Метод: POST
-URL: /v2/create
+URL: user/v2/create
 Авторизация: не требуется
 
 Body → raw JSON:
@@ -76,12 +76,12 @@ Body → raw JSON:
 3. Обновить пользователя
 
 Метод: PUT
-URL: /v2/update/:id
+URL: user/v2/update/:id
 Авторизация: JWT + роль admin или сам пользователь
 
 Пример:
 
-PUT http://localhost:3000/users/v2/update/66b7f8a7e4...
+PUT http://localhost:3000/user/v2/update/66b7f8a7e4...
 
 Body → raw JSON:
 

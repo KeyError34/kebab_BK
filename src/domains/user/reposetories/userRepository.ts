@@ -16,7 +16,7 @@ export class UserRepository {
 
   async findUserByID(id: string): Promise<IUser | null> {
     if (!Types.ObjectId.isValid(id)) return null;
-    return await User.findById(id).select('_id userName email role fullName createdAt updatedAt').lean();
+    return await User.findById(id).select('_id userName email role fullName createdAt updatedAt');
   }
 
   async findByLogin(login: string): Promise<IUser | null> {

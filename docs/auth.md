@@ -19,9 +19,9 @@ URL: http://localhost:3000/login
 
 Body → raw → JSON:
 
-
+login (userName / email)
 {
-  "username": "testuser",
+  "login": "testuser",
   "password": "testpassword"
 }
 

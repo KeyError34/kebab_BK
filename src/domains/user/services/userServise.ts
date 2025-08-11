@@ -52,12 +52,12 @@ export class UserService {
 
   async updateUserDetails(
     id: string,
-    updateData: { userName?: string; email?: string; fullName?: string; password?: string },
+    updateData: { userName?: string; email?: string; fullName?: string },
   ) {
     const user = await this.userRepo.findUserByID(id);
     if (!user) return null;
 
-    const { userName, email, fullName, password } = updateData;
+    const { userName, email, fullName } = updateData;
 
     if (userName && (await this.userRepo.checkFieldUniqueness('userName', userName, id))) {
       throw new Error(`User with name ${userName} already exists`);
@@ -71,21 +71,15 @@ export class UserService {
       throw new Error(`User with fullName ${fullName} already exists`);
     }
 
-    if (password && password.length < 8) {
-      throw new Error('Password must be at least 8 characters long');
-    }
-
     if (userName) user.userName = userName;
     if (email) user.email = email;
     if (fullName) user.fullName = fullName;
-    if (password) user.passwordHash = await hashPassword(password);
 
     user.updatedAt = new Date();
 
-    await this.userRepo.insert(user); // Mongoose save() переиспользуется
+    await user.save(); 
     return user;
   }
-
   async deleteUser(id: string) {
     const user = await this.userRepo.findUserByID(id);
     if (!user) return null;
