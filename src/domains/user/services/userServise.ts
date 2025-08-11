@@ -29,7 +29,7 @@ export class UserService {
       email,
       fullName,
       passwordHash,
-      role: 'administrator',
+      role: 'user',
     };
 
     const createdUser = await this.userRepo.insert(userData as IUser);
