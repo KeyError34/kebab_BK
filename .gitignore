@@ -9,7 +9,10 @@ build/
 
 # Environment variables
 middleware/conspect.txt
-.env
+.env.development
+.env.production
+.env.test
+
 package-lock.json
 # OS specific files
 .DS_Store
