@@ -71,13 +71,25 @@ Key: price → Number
 
 Key: image → File (тип image или video)
 
+Key: description:(описание )
+
+Key: category ('main', 'drink', 'dessert' )
+
+Key: isAvailable (true/false)
 
 Вариант 2: Без файла Тип запроса → raw → JSON:
 
 {
-  "title": "New Product",
-  "price": 150,
-  "image": "https://example.com/image.jpg"
+    "title": "Himbeerspritz2",
+    "description": "1 Schuss\tSirup (Himbeer-)\n1 Glas\tProsecco\neinige\tHimbeeren, am besten frische",
+    "price": 12.5,
+    "image": "https://res.cloudinary.com/drwrhviwk/image/upload/v1754912828/nahjq51skhmyf5xlikhb.webp",
+    "category": "drink",
+    "isAvailable": true,
+    "_id": "6899d83d90868a2c7d5c978d",
+    "createdAt": "2025-08-11T11:47:09.020Z",
+    "updatedAt": "2025-08-11T11:47:09.020Z",
+    "__v": 0
 }
 
 Ответ (201 Created):
